@@ -8,8 +8,6 @@ glass_IP="" #Default IP address
 
 function enableWifiADB {
 	
-	
-		
 	function getGlassIP {
 		
 			function askUser {
@@ -27,20 +25,10 @@ function enableWifiADB {
 				echo "===========================================================";
 				echo "[?] Using the following IP address > $ipAddress"
 				echo "-----------------------------------------------------------";
-			#	echo "[1]. Yes";
-			#	echo "[2]. No";
-			#	echo "-----------------------------------------------------------";
-			#	read response			
+				glass_IP=$ipAddress
 			}
 			askUser	
-			#if [ $response = 1 ]; then
-			glass_IP=$ipAddress
 			setupTCPconnection
-			#elif [ $response = 2 ]; then
-			#	getGlassIP
-			#else
-			#	getGlassIP
-			#fi
 	}
 		function enableShellAccess {
 			echo "===========================================================";
@@ -105,9 +93,6 @@ function enableWifiADB {
 		if [ $portNumber = 1 ]; then
 			getPort
 			echo "";
-			#echo Using Port > $tcp_port;
-			#echo "";
-			#echo $tcp_port;
 			startTCPconnection
 		else
 			getPort portNumber
@@ -282,17 +267,6 @@ function restartADB {
 				echo "Lets try and connect now";
 			fi
 	}
-#function startADBconnection {
-#			echo $port_number;
-#			echo $glass_IP;
-#			VARIABLE="$(adb devices)"
-#			if [[ "$VARIABLE" == *"adb"* ]]; then
-#			echo "adb command worked";
-#			else 
-#			echo "Didnt work";
-#			sleep 5s
-#			fi
-#}
 
 #MainActivity - start
 sleep 1s
@@ -336,6 +310,3 @@ else
 	whatDoUwant
 fi
 #MainActivity - end
-
-#read -p "Cleaning Up Source and Restore Previous String Files (y/n)?"
-#[ "$REPLY" == "y" ] || adb devices
