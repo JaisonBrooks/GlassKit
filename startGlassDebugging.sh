@@ -16,17 +16,17 @@ function enableWifiADB {
 				echo "===========================================================";
 				adb shell netcfg
 				echo "";
-				echo "===========================================================";
+				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 				echo "[?] Enter the IP address assigned to Glass";
-				echo "-----------------------------------------------------------";
+				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 				echo "[*] Enter the IP address that shows up under the section";
 				echo "[*] { wlan0 - UP --- xxx.xxx.xxx.xxx }";
 				echo "[*] If the IP address is 0.0.0.0, Check WIFI connection and retry";
 				echo "-----------------------------------------------------------";
 				read ipAddress
-				echo "===========================================================";
+				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 				echo "[?] Using the following IP address > $ipAddress"
-				echo "-----------------------------------------------------------";
+				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			#	echo "[1]. Yes";
 			#	echo "[2]. No";
 			#	echo "-----------------------------------------------------------";
@@ -43,9 +43,9 @@ function enableWifiADB {
 			#fi
 	}
 		function enableShellAccess {
-			echo "===========================================================";
-			echo "Do you want to enable ADB SHELL access with Glass";
-			echo "-----------------------------------------------------------";
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+			echo "[?] Do you want to enable ADB SHELL access with Glass";
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			echo "[1]. Yes";
 			echo "[2]. No";
 			echo "-----------------------------------------------------------";
@@ -56,9 +56,9 @@ function enableWifiADB {
 						echo "You can now start developing with Glass wirelessly";
 						echo "";
 						echo "";
-						echo "===========================================================";
+						echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 						echo "[?] What do you want to do next?";
-						echo "-----------------------------------------------------------";
+						echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 						echo "[1]. Disable ADB Wireless";
 						echo "[2]. Exit";
 						echo "-----------------------------------------------------------";
@@ -96,9 +96,9 @@ function enableWifiADB {
 			echo "";
 			enableShellAccess
 		}
-		echo "===========================================================";
+		echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 		echo "[?] Enter the TCP/IP Port you want to use";
-		echo "-----------------------------------------------------------";
+		echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 		echo "Please input Port Number or enter 1 to use DEFAULT";
 		echo "-----------------------------------------------------------";
 		read portNumber
@@ -123,9 +123,9 @@ function enableWifiADB {
 	sleep 1s
 	echo "===========================================================";
 	adb devices
-	echo "===========================================================";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[?] Do you see Glass as an active ADB device? (1 or 2)"
-	echo "-----------------------------------------------------------";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[1]. Yes";
 	echo "[2]. No";
 	echo "-----------------------------------------------------------";
@@ -140,9 +140,9 @@ function disableWifiADB {
 	echo "";
 	echo "Starting...";
 	echo "";
-	echo "===========================================================";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[?] Is Glass connected via USB currently?"
-	echo "-----------------------------------------------------------";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[1]. Yes";
 	echo "[2]. No";
 	echo "-----------------------------------------------------------";
@@ -152,9 +152,9 @@ function disableWifiADB {
 			echo "Please Disconnect USB cable first";
 			echo "";
 			sleep 1s
-			echo "===========================================================";
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			echo "[?] Have you Disconnected Glass from USB?"
-			echo "-----------------------------------------------------------";
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			echo "[1]. Yes";
 			echo "[2]. No";
 			echo "-----------------------------------------------------------";
@@ -183,11 +183,11 @@ function disableWifiADB {
 	echo "Done...";
 	sleep 1s
 	echo "";
-	echo "[?] Now connect Glass again via USB";
+	echo "Now connect Glass again via USB";
 	sleep 2s
-	echo "===========================================================";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[?] Is Glass connected via USB?";
-	echo "-----------------------------------------------------------";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[1]. Yes";
 	echo "[2]. No";
 	echo "-----------------------------------------------------------";
@@ -199,9 +199,9 @@ function disableWifiADB {
 	else
 		echo "Well you should connect it real quick";
 		sleep 1s
-		echo "===========================================================";
+		echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 		echo "[?] What do you want to do next?";
-		echo "-----------------------------------------------------------";
+		echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 		echo "[1]. Enable ADB Wireless";
 		echo "[2]. Exit";
 		echo "-----------------------------------------------------------";
@@ -213,9 +213,9 @@ function disableWifiADB {
 			fi
 	fi
 	echo "";
-	echo "===========================================================";
-	echo "Do you want to Exit the application now?";
-	echo "-----------------------------------------------------------";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+	echo "[?] Do you want to Exit the application now?";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	read responseExit
 	if [ $responseExit = yes ]; then
 		echo "Thanks for using this tool!!!";
@@ -241,9 +241,9 @@ function exitApp {
 	exit
 }
 function whatDoUwant {
-	echo "===========================================================";
-	echo "Do you want to restart the tool? (Yes / No)";
-	echo "-----------------------------------------------------------";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+	echo "[?] Do you want to restart the tool? (Yes / No)";
+	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[1]. Yes";
 	echo "[2]. No";
 	echo "-----------------------------------------------------------";
@@ -265,9 +265,9 @@ function restartADB {
 			echo "Waiting for ADB to find Glass";
 			#adb wait-for-device - Not using due to cause extended hang up
 			adb devices
-			echo "===========================================================";
-			echo "Do you see Glass now? (Yes / No)"
-			echo "-----------------------------------------------------------";
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+			echo "[?] Do you see Glass now? (Yes / No)"
+			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			echo "[1]. Yes";
 			echo "[2]. No";
 			echo "-----------------------------------------------------------";
@@ -294,27 +294,27 @@ function restartADB {
 #			fi
 #}
 
-#MainActivity - start
+#User Interface
 sleep 1s
 echo " _________________________________________________________";
 echo "|                                                         |";
 echo "|          [ GOOGLE GLASS // ADB Wireless tool ]          |";
-sleep 1s
 echo "|                                                         |";
+sleep 1s
 echo "|             { Developed by Jaison Brooks }              |";
 sleep 1s
 echo "|_________________________________________________________|";
 echo "";
-echo "===================== Prerequisites ======================";
+echo "===================== Prerequisites =======================";
 echo "[*] Connect your Glass via USB";
 echo "[*] Enable Debug mode from Glass system menu";
 echo "[*] Ensure your Glass ADB driver is installed";
 echo "[*] Connect Glass to the same WIFI network as this computer";
 echo "===========================================================";
 echo "";
-echo "===========================================================";
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 echo "[?] Start by selecting one of the following options";
-echo "-----------------------------------------------------------";
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 echo "[1]. Start ADB Wireless";
 echo "[2]. Stop ADB Wireless";
 echo "[3]. Exit";
