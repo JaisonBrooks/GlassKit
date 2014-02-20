@@ -24,16 +24,9 @@ function enableWifiADB {
 				read ipAddress
 				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 				echo "[?] Using the following IP address > $ipAddress"
-<<<<<<< HEAD
 				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-			#	echo "[1]. Yes";
-			#	echo "[2]. No";
-			#	echo "-----------------------------------------------------------";
-			#	read response			
-=======
-				echo "-----------------------------------------------------------";
 				glass_IP=$ipAddress
->>>>>>> aa0ab045ffb5159aae8e5760d4c4f181077af4a0
+				echo "-----------------------------------------------------------";
 			}
 			askUser	
 			setupTCPconnection
@@ -113,8 +106,7 @@ function enableWifiADB {
 
 	echo "";
 	echo "Starting...";
-	sleep 1s
-	echo "===========================================================";
+	echo "";
 	adb devices
 	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[?] Do you see Glass as an active ADB device? (1 or 2)"
