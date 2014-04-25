@@ -15,7 +15,7 @@ function enableWifiADB {
 			function askUser {
 				echo "===========================================================";
 				if [ os_type == "Darwin"]; then
-					./adb shell netcfg
+					adb shell netcfg
 				else
 					adb shell netcfg
 				fi
