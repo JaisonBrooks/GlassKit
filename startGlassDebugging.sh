@@ -1,9 +1,11 @@
 #!/bin/bash
 # This is a program that enables and disables Google Glass ADB Wireless
 
-glassConnection=false
+glass_connected=false
 tcp_port="" #Default Port
 glass_IP="" #Default IP address
+user_check=`uname -s` #Checks User initially
+os_type="" #Confirmed OS Type
 
 
 function enableWifiADB {
@@ -12,7 +14,11 @@ function enableWifiADB {
 		
 			function askUser {
 				echo "===========================================================";
-				adb shell netcfg
+				if [ os_type == "Darwin"]; then
+					./adb shell netcfg
+				else
+					adb shell netcfg
+				fi
 				echo "";
 				echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 				echo "[?] Enter the IP address assigned to Glass";
@@ -30,7 +36,9 @@ function enableWifiADB {
 			}
 			askUser	
 			setupTCPconnection
-	}
+
+	} # END of getGlassIP
+
 		function enableShellAccess {
 			echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 			echo "[?] Do you want to enable ADB SHELL access with Glass";
@@ -58,7 +66,7 @@ function enableWifiADB {
 								exitApp
 							fi
 					fi
-	}
+	} # END of enableShellAccess
 	
 	
 	function setupTCPconnection {
@@ -102,7 +110,8 @@ function enableWifiADB {
 			echo "";
 			startTCPconnection
 		fi
-	}
+
+	} # END of setupTCPConnection
 
 	echo "";
 	echo "Starting...";
@@ -120,7 +129,9 @@ function enableWifiADB {
 		elif [ $glassConnected = 2 ]; then
 			restartADB
 		fi
-}
+
+} # END of enableWifiADB
+
 function disableWifiADB {
 	echo "";
 	echo "Starting...";
@@ -220,11 +231,15 @@ function disableWifiADB {
 		bash startGlassDebugging.sh
 		echo "";
 	fi
-}
+
+} # END of disableWifiADB
+
 function exitApp {
 	echo "Exiting application...";
 	exit
-}
+
+} # END of exitApp
+
 function whatDoUwant {
 	echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 	echo "[?] Do you want to restart the tool? (Yes / No)";
@@ -241,8 +256,10 @@ function whatDoUwant {
 	else
 		echo "Exiting application...";
 		exit
-	fi		
-}
+	fi	
+
+} # END of whatDoUwant
+
 function restartADB {
 			echo "Restarting ADB and attempting to reconnect";		
 			adb kill-server
@@ -266,28 +283,51 @@ function restartADB {
 				enableWifiADB
 				echo "Lets try and connect now";
 			fi
-	}
+
+} # END of restartADB
+
+function checkUSER {
+	if (( $user_check == "Darwin" || $user_check == "Linux" ));
+	then
+		if [ $user_check == "Darwin" ]; then
+			os_type="Mac OSX"
+		fi
+
+		if [ $user_check == "Linux" ]; then
+			os_type="Linux"
+		fi
+	else
+		os_type="Windows/Other"
+	fi
+
+}
+
 
 #User Interface
 sleep 1s
-echo " _________________________________________________________";
+checkUSER
+echo "|=========================================================|";
 echo "|                                                         |";
 echo "|          [ GOOGLE GLASS // ADB Wireless tool ]          |";
 echo "|                                                         |";
-sleep 1s
 echo "|             { Developed by Jaison Brooks }              |";
-sleep 1s
-echo "|_________________________________________________________|";
+echo "|                                                         |";
+echo "|=========================================================|";
 echo "";
-echo "===================== Prerequisites =======================";
-echo "[*] Connect your Glass via USB";
-echo "[*] Enable Debug mode from Glass system menu";
-echo "[*] Ensure your Glass ADB driver is installed";
-echo "[*] Connect Glass to the same WIFI network as this computer";
+echo "===========================================================";
+echo "      Computer OS = $os_type || Connected = $glass_connected";
 echo "===========================================================";
 echo "";
+echo "-------------------> Getting Started <---------------------";
+echo "[*] Connect your Glass via USB to current computer";
+echo "[*] Enable Debug mode from Glass system menu";
+echo "[*] Have your Glass ADB driver installed";
+echo "[*] Finally, connect Glass to current Wifi Network";
+echo "-----------------------------------------------------------";
+echo "";
+echo "";
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-echo "[?] Start by selecting one of the following options";
+echo "[?] What would you like to do?";
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 echo "[1]. Start ADB Wireless";
 echo "[2]. Stop ADB Wireless";
@@ -295,18 +335,14 @@ echo "[3]. Exit";
 echo "-----------------------------------------------------------";
 read startingSelection
 if [ $startingSelection = 1 ]; then
-	#Setup ADB Wireless
 	enableWifiADB
 			
 elif [ $startingSelection = 2 ]; then
-	#Start ADB Wireless
 	disableWifiADB
 		
 elif [ $startingSelection = 3 ]; then
-	#Just Exit
 	exitApp
 else
-	#Double check what the user wants to do
 	whatDoUwant
 fi
 #MainActivity - end
